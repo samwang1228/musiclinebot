@@ -20,34 +20,42 @@ handler = WebhookHandler('你的 CHANNEL_SECRET')
 5. 提供完整歌詞
 ## 結果
 ### 上傳檔案
-<div style="display: flex; flex-direction: row;">
-  <div style="flex: 1;">
-    <img src="img/560278.jpg" alt="圖片1描述" style="max-width: 100%; max-height: 100%;">
-  </div>
-  <div style="flex: 1;">
-    <img src="img/560273.jpg" alt="圖片2描述" style="max-width: 100%; max-height: 100%;">
-  </div>
-</div>
+<table>
+  <tr>
+    <td>
+ <img src="img/560278.jpg" alt="圖片1描述" style="max-width: 100%; max-height: 100%;">    </td>
+    <td>
+ <img src="img/560273.jpg" alt="圖片2描述" style="max-width: 100%; max-height: 100%;">    </td>
+  </tr>
+</table>
+
+ 
 
 ### 歷史紀錄
-<div style="display: flex; flex-direction: row;">
-  <div style="flex: 1;">
+<table>
+  <tr>
+    <td>
     <img src="img/560181.jpg" alt="圖片1描述" style="max-width: 100%; max-height: 100%;">
-  </div>
-  <div style="flex: 1;">
+    <td>
     <img src="img/560186.jpg" alt="圖片2描述" style="max-width: 100%; max-height: 100%;">
-  </div>
-</div>
+  </tr>
+</table>
 
 ### 推薦相似歌
- <div style="display: flex; flex-direction: row;">
-  <div style="flex: 1;">
+<table>
+  <tr>
+    <td>
     <img src="img/560203.jpg" alt="圖片1描述" style="max-width: 100%; max-height: 100%;">
-  </div>
-  <div style="flex: 1;">
+    <td>
     <img src="img/560204.jpg" alt="圖片2描述" style="max-width: 100%; max-height: 100%;">
-  </div>
-</div>
+  </tr>
+</table>
 
 ### 完整歌詞
-<img src="img/560274.jpg" style="max-width: 100%; max-height:">
+<table>
+  <tr>
+    <td>
+<img src="img/560274.jpg" style="max-width: 100%; max-height:">    <td>
+    <img src="img/560284.jpg" alt="圖片2描述" style="max-width: 100%; max-height: 100%;">
+  </tr>
+</table>
