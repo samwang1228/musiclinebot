@@ -4,12 +4,14 @@
 git clone https://github.com/samwang1228/music-line-bot.git
 cd music-line-bot
 pip install -r requirements.txt
+python -u musiclinebot.py
 ```
-## 修改API KEY
+## 修改API KEY以及link
 ```python
-# linebotFunc1.py
+# musiclinebot
 line_bot_api = LineBotApi('你的 CHANNEL_ACCESS_TOKEN')
 handler = WebhookHandler('你的 CHANNEL_SECRET')
+ngrok_link='你的對外IP'
 ```
 ## 功能解釋
 我們提供以下功能
@@ -29,7 +31,6 @@ handler = WebhookHandler('你的 CHANNEL_SECRET')
   </tr>
 </table>
 
- 
 
 ### 歷史紀錄
 <table>
@@ -59,3 +60,6 @@ handler = WebhookHandler('你的 CHANNEL_SECRET')
     <img src="img/560284.jpg" alt="圖片2描述" style="max-width: 100%; max-height: 100%;">
   </tr>
 </table>
+
+### video
+[![demo](https://i.ytimg.com/vi/_cyTOigu2A0/hqdefault.jpg)](https://www.youtube.com/watch?v=_cyTOigu2A0&ab_channel=%E5%BC%B5%E7%9D%BF "demo")

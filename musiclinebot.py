@@ -47,7 +47,7 @@ ALLOWED_EXTENSIONS = {'mp3','wav'}
 # TODO: Change your key
 line_bot_api = LineBotApi('你的 CHANNEL_ACCESS_TOKEN')
 handler = WebhookHandler('你的 CHANNEL_SECRET')
-
+ngrok_link='你的對外IP'
 app.secret_key =  b'_5#y2L"F4Q8z\n\xec]/' 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER          # 設置儲存上傳檔的資料夾 
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024  * 1024 * 1024 # 上傳檔最大16GB
@@ -108,7 +108,7 @@ def history(userID):
     lyrics=[]
     picUrl=[]
     url=''
-    
+    output_path=[]
     path='share\\'+userID+'\\'
     obj = os.scandir(path)
     for entry in obj :
@@ -118,6 +118,7 @@ def history(userID):
         info = path + entry.name + '\\output.txt'
         print(info)
         if(os.path.isfile(info)):
+            output_path.append(info)
             with open(info, "r") as file:
                 for line in file:
                     if(cnt==0):
@@ -159,7 +160,7 @@ def history(userID):
         file.close
        
     # print(song,singer,picUrl,url)
-    return singer,song,melody,lyrics,picUrl     
+    return singer,song,melody,lyrics,picUrl,output_path     
 def detect_song(path):
     # path = 'share'
     obj = os.scandir(path)
@@ -236,14 +237,16 @@ def handle_message(event):
     song=[]
     melody=[]
     lyrics=[]
-    postback_data = event.message.text
+    # postback_data = event.message.text
     picUrl=[]
-    
+    output_path=[]
     if mtext == '@上傳檔案':
         try:
             # TODO: here
             message = TextSendMessage(  
-                text = f'https://dcbc-123-195-0-149.ngrok-free.app/user.html/{userID}'
+                # text = f'https://ab2c-123-195-0-149.ngrok-free.app/user.html/{userID}'
+                text=f'{ngrok_link}/user.html/{userID}'
+                
             )
             line_bot_api.reply_message(event.reply_token,message)
         except:
@@ -297,8 +300,7 @@ def handle_message(event):
         try:
             # TODO: here
             message = TextSendMessage(  
-                text = "我們提供以下功能\n 1.@上傳檔案(也可以點擊左下角icon)將會回傳一個link給你請點擊此link到該網站上傳mp3檔案 \
-                        上船完成後系統會幫你辨識歌曲此外也可以根據曲風或歌詞推薦歌給你\n2.@歷史紀錄(也可以點擊右下方icon)我們將會顯示你過往上傳的mp3並讓你可以選擇"
+                text = "我們提供以下功能\n1.@上傳檔案(也可以點擊左下角icon)將會回傳一個link給你請點擊此link到該網站上傳mp3檔案上傳完成後系統會幫你辨識歌曲此外也可以根據曲風或歌詞推薦歌給你\n2.@歷史紀錄(也可以點擊右下方icon)我們將會顯示你過往上傳的mp3並讓你可以選擇\n3.@以曲風推薦(點擊card button)會推薦曲風相似的歌曲\n4.@以歌詞推薦(點擊card button)會推薦歌詞相似的歌曲\n5.提供完整歌詞"
             )
             line_bot_api.reply_message(event.reply_token,message)
         except:
@@ -316,7 +318,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
 
     if mtext == '@歷史紀錄':
-            singer, song, melody, lyrics, picUrl = history(userID)
+            singer, song, melody, lyrics, picUrl, output_path = history(userID)
             columns = []
             print(singer,song,melody,lyrics,picUrl)
             for i in range(len(song)):
@@ -332,6 +334,10 @@ def handle_message(event):
                         PostbackTemplateAction(
                             label='以歌詞推薦',
                             data=lyrics[i]
+                        ),
+                        PostbackTemplateAction(
+                            label='查看完整歌詞',
+                            data=f'!歌詞{output_path[i]}'
                         ),
                          
                     ]
